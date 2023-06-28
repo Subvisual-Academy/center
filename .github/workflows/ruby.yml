@@ -1,4 +1,4 @@
-name: SpaceCenter CI
+name: Center CI
 
 on:
   push:
@@ -16,9 +16,9 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          POSTGRES_DB: space_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
+          POSTGRES_DB: center_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
