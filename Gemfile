@@ -15,6 +15,9 @@ gem "puma", "~> 5.0"
 # Format the code
 gem "standard"
 
+# Secret variables
+gem 'figaro'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
