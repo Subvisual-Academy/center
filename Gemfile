@@ -16,7 +16,7 @@ gem "puma", "~> 5.0"
 gem "standard"
 
 # Secret variables
-gem 'figaro'
+gem "figaro"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -52,4 +52,4 @@ group :development do
   # gem "spring"
 end
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5", group: :development
