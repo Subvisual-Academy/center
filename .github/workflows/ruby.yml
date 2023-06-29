@@ -36,3 +36,4 @@ jobs:
       # Verifiy code format
       - name: Standard
         run: rake standard
+        
