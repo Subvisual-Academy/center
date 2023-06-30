@@ -1,6 +1,6 @@
-# README
+# CENTER
 
-Rails API for the project built for Subvisual Summer Camp 2023 in which the ambition is to try and make a better community inside of the Universe.
+Rails API for the project SpaceCenter built for Subvisual Summer Camp 2023 in which the ambition is to try and make a better community inside of the Universe.
 
 * Ruby version
 
