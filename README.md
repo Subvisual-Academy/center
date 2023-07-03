@@ -16,11 +16,11 @@ Set the environment variables like on the `envrc.sample`
 
 * Database creation
 
-rake db:create
+rails db:create
 
 * Database initialization
 
-rake db:migrate
+rails db:migrate
 
 * Run the app
 
