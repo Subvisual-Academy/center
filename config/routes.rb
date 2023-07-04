@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "rails/welcome#index"
+  resources :users
+  post "/auth/login", to: "authentication#login"
+  get "/*a", to: "application#not_found"
 end
