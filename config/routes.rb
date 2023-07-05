@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   root "rails/welcome#index"
   resources :users
   post "/auth/login", to: "authentication#login"
-  get "/*a", to: "application#not_found"
+  get "/*", to: "application#not_found"
 end
