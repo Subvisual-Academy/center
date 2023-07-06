@@ -5,5 +5,5 @@ class User < ApplicationRecord
   validates :password,
     length: {minimum: 6},
     if: -> { new_record? || !password.nil? }
-  enum :location, {braga: 0, coimbra: 1}
+  enum :base_office, {braga: 0, coimbra: 1}
 end
