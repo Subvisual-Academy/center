@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authorize_request
-  before_action :set_question, only: %i[ show update destroy ]
+  before_action :set_question, only: %i[show update destroy]
 
   # GET /questions
   def index
@@ -40,13 +40,14 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def question_params
-      params.permit(:title, :content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def question_params
+    params.permit(:title, :content)
+  end
 end
