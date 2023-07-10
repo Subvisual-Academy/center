@@ -30,3 +30,5 @@
 
 # Env variables for dev
 .envrc
+
+dump.rdb
