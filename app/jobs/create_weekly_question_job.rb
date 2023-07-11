@@ -1,4 +1,4 @@
-class Jobs::CreateWeeklyQuestion < ApplicationJob
+class CreateWeeklyQuestionJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
