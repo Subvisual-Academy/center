@@ -1,24 +1,27 @@
-# README
+# CENTER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Rails API for the project SpaceCenter built for Subvisual Summer Camp 2023 in which the ambition is to try and make a better community inside of the Universe.
 
 * Ruby version
 
+3.2.2
+
 * System dependencies
+
+bundle install
 
 * Configuration
 
+Set the environment variables like on the `envrc.sample`
+
 * Database creation
+
+rails db:create
 
 * Database initialization
 
-* How to run the test suite
+rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+* Run the app
 
-* Deployment instructions
-
-* ...
+rails start
