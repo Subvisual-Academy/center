@@ -1,4 +1,4 @@
 create_weekly_question:
   cron: "0 9 * * 1"
-  class: "Jobs::CreateWeeklyQuestion"
+  class: "CreateWeeklyQuestionJob"
   queue: default
