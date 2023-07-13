@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :answers
   post "/auth/login", to: "authentication#login"
   get "/*", to: "application#not_found"
+  get "/weekly_question", to: "week_question#show"
 end

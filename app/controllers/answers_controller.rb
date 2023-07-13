@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: %i[show update destroy]
+  before_action :authorize_request
 
   # GET /answers
   def index
