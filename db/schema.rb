@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_101848) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_14_134936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_101848) do
     t.string "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "left", default: false
+    t.boolean "not_paired", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
