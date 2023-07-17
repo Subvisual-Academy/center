@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "rails/welcome#index"
   resources :users
   resources :questions do
-    resources :answers, only: [:index], controller: "questions_answers"
+    resources :answers, only: [:index], controller: "questions/answers"
   end
   resources :answers
   post "/auth/login", to: "authentication#login"
