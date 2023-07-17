@@ -39,12 +39,6 @@ class AnswersController < ApplicationController
     @answer.destroy
   end
 
-  # GET /answers/question/1
-  def get_question
-    @answers = Answer.all.where(question_id: params["question_id"])
-    render json: @answers
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
