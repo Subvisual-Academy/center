@@ -2,14 +2,12 @@ class CreateWeeklyActivitiesJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    user_ids = User.all.order("RANDOM()").pluck(:id)
+    unused_user = User.find_by(not_paired: true)
+    return unless unused_user
 
-    unused_user_id = User.where(not_paired: true)&.ids
-    return unless unused_user_id
+    user_ids = User.where(not_paired: false).order("RANDOM()").pluck(:id).unshift(unused_user.id)
 
-    user_ids = user_ids.unshift(unused_user_id).uniq
-
-    User.update(unused_user_id, not_paired: false)
+    unused_user.update(not_paired: false)
 
     user_ids.each_slice(2) do |user_1, user_2|
       if user_2
