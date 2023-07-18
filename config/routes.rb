@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "rails/welcome#index"
   resources :users
-  resources :questions
+  resources :questions do
+    resources :answers, only: [:index], controller: "questions/answers"
+  end
   resources :answers
   post "/auth/login", to: "authentication#login"
-  get "/*", to: "application#not_found"
   get "/weekly_question", to: "week_question#show"
+  get "/*path", to: "application#not_found"
 end
