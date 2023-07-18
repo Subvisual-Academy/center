@@ -4,20 +4,18 @@ class CreateWeeklyActivitiesJob < ApplicationJob
   def perform(*args)
     user_ids = User.all.order("RANDOM()").pluck(:id)
 
-    unused_user_id = User.find_by(not_paired: true)&.id
+    unused_user_id = User.where(not_paired: true)&.ids
     return unless unused_user_id
 
     user_ids = user_ids.unshift(unused_user_id).uniq
 
-    users = user_ids.collect { |id| User.find(id) }
-
     User.update(unused_user_id, not_paired: false)
 
-    users.each_slice(2) do |user_1, user_2|
+    user_ids.each_slice(2) do |user_1, user_2|
       if user_2
-        WeeklyActivity.create(user_1: user_1, user_2: user_2)
+        WeeklyActivity.create(user_1_id: user_1, user_2_id: user_2)
       else
-        user_1.update(not_paired: true)
+        User.find_by_id(user_1).update(not_paired: true)
       end
     end
   end
