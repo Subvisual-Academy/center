@@ -6,5 +6,6 @@ class User < ApplicationRecord
     length: {minimum: 6},
     if: -> { new_record? || !password.nil? }
   has_many :answers
+  has_many :weekly_activities
   enum :base_office, {braga: 0, coimbra: 1}
 end
