@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_154514) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_112930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,7 +40,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_154514) do
     t.string "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "not_paired", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "weekly_activities", force: :cascade do |t|
+    t.bigint "user_1_id", null: false
+    t.bigint "user_2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_1_id"], name: "index_weekly_activities_on_user_1_id"
+    t.index ["user_2_id"], name: "index_weekly_activities_on_user_2_id"
   end
 
   create_table "weekly_questions", force: :cascade do |t|
@@ -54,5 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_154514) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "weekly_activities", "users", column: "user_1_id"
+  add_foreign_key "weekly_activities", "users", column: "user_2_id"
   add_foreign_key "weekly_questions", "questions"
 end
