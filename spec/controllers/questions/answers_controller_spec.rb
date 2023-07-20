@@ -1,13 +1,14 @@
 require "rails_helper"
 
-RSpec.describe Questions::AnswersController, type: :controller do
+RSpec.describe Questions::AnswersController do
   describe "GET index" do
     it "returns a boolean" do
-      user = User.create(email: "email@gmail.com", password: "password")
-      question = Question.create(body: "A Question")
-      Answer.create(user: user, question: question, body: "An Answer")
+      user = create(:user)
+      question = create(:question)
+      create(:answer, user: user, question: question)
       get :index, params: {question_id: question.id}
       parsed_body = JSON.parse(response.body)
+
       expect(parsed_body["question_id"] == question.id)
     end
   end
