@@ -37,5 +37,15 @@ module Spacecenter
     config.api_only = true
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.controller_specs false
+      g.request_specs false
+      g.view_specs false
+      g.helper_specs false
+      g.routing_specs false
+      g.factory_bot false
+    end
   end
 end
