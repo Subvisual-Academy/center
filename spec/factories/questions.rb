@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :question do
-    title { "Title" }
-    content { "A Question" }
+    body { "A Question" }
   end
 end
