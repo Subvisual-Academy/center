@@ -39,18 +39,6 @@ class WeeklyActivitiesController < ApplicationController
     @activity.destroy
   end
 
-  def left_user
-    pairs = WeeklyActivity.all
-
-    if User.all.length.odd?
-      used_users = pairs.flat_map { |pair| [pair.user_1, pair.user_2] }
-      @unused_user = User.all - used_users
-      render json: @unused_user
-    else
-      render json: :null
-    end
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

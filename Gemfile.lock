@@ -83,6 +83,7 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
+    finishing_moves (1.2.1)
     foreman (0.87.2)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
@@ -230,6 +231,7 @@ DEPENDENCIES
   bootsnap
   debug
   dockerfile-rails (>= 1.5)
+  finishing_moves
   foreman
   jwt
   pg (~> 1.1)
