@@ -6,7 +6,6 @@ RSpec.describe Questions::AnswersController do
       user = create(:user)
       question = create(:question)
       create(:answer, user: user, question: question)
-
       get :index, params: {question_id: question.id}
       parsed_body = JSON.parse(response.body)
 
