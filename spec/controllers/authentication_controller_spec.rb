@@ -1,21 +1,21 @@
 require "rails_helper"
 
 RSpec.describe "Authentication", type: :request do
-  describe "GET login" do
-    it "returns a 200" do
+  context "GET login" do
+    it "verifies if the user exists and is validated" do
       user = create(:user)
 
       post "/auth/login", params: {email: user.email, password: user.password}
 
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
 
-    it "JSON body response contains expected attributes" do
+    it "ensures the JSON body response contains the expected attributes" do
       user = create(:user)
 
       post "/auth/login", params: {email: user.email, password: user.password}
-      json_response = JSON.parse(response.body)
 
+      json_response = JSON.parse(response.body)
       expect(json_response.keys).to match_array(["token", "exp", "user"])
     end
   end

@@ -1,14 +1,13 @@
 require "rails_helper"
 
 RSpec.describe "Answers of a question", type: :request do
-  describe "GET index" do
-    it "returns http success" do
-      user = create(:user, email: "example2@gmail.com")
+  context "GET index" do
+    it "lists the answers to a specific question sucessfully" do
+      user = create(:user)
       question = create(:question)
       create(:answer, user: user, question: question)
-      post "/auth/login", params: {email: user.email, password: user.password}
-      parsed_body = JSON.parse(response.body)
-      header = {"Authorization" => "Bearer #{parsed_body["token"]}"}
+      token = sign_in_as(user)
+      header = {"Authorization" => "Bearer #{token}"}
 
       get "/questions/#{question.id}/answers", headers: header
 

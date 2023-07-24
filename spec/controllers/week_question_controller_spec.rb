@@ -1,15 +1,13 @@
 require "rails_helper"
 
 RSpec.describe "Weekly Question", type: :request do
-  describe "GET show" do
-    it "returns a 200" do
-      create(:user)
+  context "GET show" do
+    it "provides the weekly question for the given user" do
+      user = create(:user)
       question = create(:question)
       weekly_question = WeeklyQuestion.create(question: question, week: Date.today.end_of_week + 1.day)
-      user = create(:user, email: "example2@gmail.com")
-      post "/auth/login", params: {email: user.email, password: user.password}
-      parsed_body = JSON.parse(response.body)
-      header = {"Authorization" => "Bearer #{parsed_body["token"]}"}
+      token = sign_in_as(user)
+      header = {"Authorization" => "Bearer #{token}"}
 
       get "/weekly_question", headers: header
 
