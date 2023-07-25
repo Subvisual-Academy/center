@@ -35,7 +35,7 @@ jobs:
         run: bin/rails db:schema:load
       # Verifiy code format
       - name: Standard
-        run: rails standard
+        run: bin/rails standard
       # Run tests
       - name: Spec
         run: bin/rspec
