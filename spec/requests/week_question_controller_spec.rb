@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Weekly Question", type: :request do
+RSpec.describe "Weekly Question" do
   context "GET show" do
     it "provides the weekly question for the given user" do
       user = create(:user)
@@ -9,7 +9,7 @@ RSpec.describe "Weekly Question", type: :request do
       token = sign_in_as(user)
       header = {"Authorization" => "Bearer #{token}"}
 
-      get "/weekly_question", headers: header
+      get weekly_question_path, headers: header
 
       expect(response.body).to include(weekly_question.question.id.to_s)
       expect(response.status).to eq(200)

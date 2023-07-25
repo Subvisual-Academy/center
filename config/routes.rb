@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :answers, only: [:index], controller: "questions/answers"
   end
   resources :answers
-  post "/auth/login", to: "authentication#login"
-  get "/weekly_question", to: "week_question#show"
+  post "/auth/login", to: "authentication#login", as: "login"
+  get "/weekly_question", to: "week_question#show", as: "weekly_question"
   get "/*path", to: "application#not_found"
 end

@@ -7,4 +7,3 @@ create_weekly_activity:
   cron: "0 9 * * 1"
   class: "CreateWeeklyActivityJob"
   queue: default
-  

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Answers of a question", type: :request do
+RSpec.describe "Answers of a question" do
   context "GET index" do
     it "lists the answers to a specific question sucessfully" do
       user = create(:user)
@@ -9,7 +9,7 @@ RSpec.describe "Answers of a question", type: :request do
       token = sign_in_as(user)
       header = {"Authorization" => "Bearer #{token}"}
 
-      get "/questions/#{question.id}/answers", headers: header
+      get question_answers_path(question.id), headers: header
 
       expect(response.body).to include(question.id.to_s)
       expect(response.status).to eq(200)
