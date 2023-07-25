@@ -6,8 +6,7 @@ RSpec.describe "Answers of a question" do
       user = create(:user)
       question = create(:question)
       create(:answer, user: user, question: question)
-      token = sign_in_as(user)
-      header = {"Authorization" => "Bearer #{token}"}
+      header = sign_in_as(user)
 
       get question_answers_path(question.id), headers: header
 

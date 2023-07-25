@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :answers
   resources :weekly_friends, only: [:show], controller: "weekly_friends"
-  post "/auth/login", to: "authentication#login", as: "login"
-  get "/weekly_question", to: "week_question#show", as: "weekly_question"
+  post "/auth/login", to: "authentication#login", as: :login
+  get "/weekly_question", to: "week_question#show", as: :weekly_question
   get "/*path", to: "application#not_found"
 end

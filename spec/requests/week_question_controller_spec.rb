@@ -6,8 +6,7 @@ RSpec.describe "Weekly Question" do
       user = create(:user)
       question = create(:question)
       weekly_question = WeeklyQuestion.create(question: question, week: Date.today.end_of_week + 1.day)
-      token = sign_in_as(user)
-      header = {"Authorization" => "Bearer #{token}"}
+      header = sign_in_as(user)
 
       get weekly_question_path, headers: header
 
