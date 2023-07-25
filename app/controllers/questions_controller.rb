@@ -48,6 +48,6 @@ class QuestionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def question_params
-    params.permit(:title, :content)
+    params.permit(:body)
   end
 end
