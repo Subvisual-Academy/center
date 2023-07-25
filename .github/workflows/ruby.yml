@@ -2,9 +2,9 @@ name: Center CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: '*'
+    branches: "*"
 
 jobs:
   build:
@@ -35,4 +35,7 @@ jobs:
         run: bin/rails db:schema:load
       # Verifiy code format
       - name: Standard
-        run: rake standard
+        run: rails standard
+      # Run tests
+      - name: Spec
+        run: bin/rspec
