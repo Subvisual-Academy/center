@@ -5,5 +5,5 @@ create_weekly_question:
 
 create_weekly_activity:
   cron: "0 9 * * 1"
-  class: "CreateWeeklyActivityJob"
+  class: "CreateWeeklyActivitiesJob"
   queue: default
