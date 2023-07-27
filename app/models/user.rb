@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_one_attached :profile_pic
   validates :email, presence: true, uniqueness: true
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates :password,

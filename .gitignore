@@ -28,6 +28,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore testing images
+/app/assets/images
+
 # Env variables for dev
 .envrc
 
