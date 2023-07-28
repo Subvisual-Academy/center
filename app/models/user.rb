@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   private def add_default_picture
     unless profile_pic.attached?
-      profile_pic.attach(io: File.open("#{Rails.root}/app/assets/images/profile.png"), filename: "profile.png", content_type: "image/png")
+      profile_pic.attach(io: File.open("./app/assets/images/profile.png"), filename: "profile.png", content_type: "image/png")
     end
   end
 end
