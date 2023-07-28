@@ -10,12 +10,12 @@ class UsersController < ApplicationController
 
   # GET /users/{user_id}
   def show
-    render json: @user, status: :ok
+    render json: @user.to_json(include: [:profile_pic]), status: :ok
   end
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params).to_json(include: [:profile_pic])
     if @user.save
       render json: @user, status: :created
     else
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   # PUT /users/{user_id}
   def update
-    unless @user.update(user_params)
+    unless @user.update(user_params).to_json(include: [:profile_pic])
       render json: {errors: @user.errors.full_messages},
         status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(
-      :name, :email, :password, :password_confirmation, :bio, :base_office, :role
+      :name, :email, :password, :password_confirmation, :bio, :base_office, :role, :profile_pic
     )
   end
 end
