@@ -63,4 +63,6 @@ RSpec.configure do |config|
 
   # Include authentication helper in all of our specs
   config.include Helpers::Authentication
+
+  config.include ActionMailer::TestHelper, type: :mailer
 end
