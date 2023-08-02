@@ -3,16 +3,7 @@ class WeeklyQuestionsController < ApplicationController
 
   # GET all the weekly questions with question body info
   def index
-    weekly_questions = WeeklyQuestion.all
-
-    ret = weekly_questions.map do |week_question|
-      question = Question.find(week_question.question_id)
-      {
-        weekly_question: week_question,
-        question_body: question.body
-      }
-    end
-    render json: ret.to_json
+    render json: WeeklyQuestion.all.to_json(include: {question: {only: :body}})
   end
 
   # GET this weeks question
