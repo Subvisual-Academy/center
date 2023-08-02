@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/{user_id}
   def show
-    render json: @user.to_json(include: [:profile_pic]), status: :ok
+    render json: Alba.serialize(@user), status: :ok
   end
 
   # POST /users
