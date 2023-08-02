@@ -60,4 +60,4 @@ end
 
 gem "dockerfile-rails", ">= 1.5", group: :development
 
-gem 'sendgrid-ruby'
+gem "sendgrid-ruby"
