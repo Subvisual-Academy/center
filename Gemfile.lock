@@ -214,9 +214,6 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.13.0)
-    ruby_http_client (3.5.5)
-    sendgrid-ruby (6.6.2)
-      ruby_http_client (~> 3.4)
     sidekiq (7.1.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -249,6 +246,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
@@ -265,7 +263,6 @@ DEPENDENCIES
   rails (~> 7.0.5, >= 7.0.5.1)
   redis (~> 4.0)
   rspec-rails (~> 6.0.0)
-  sendgrid-ruby
   sidekiq
   sidekiq-cron
   standard
