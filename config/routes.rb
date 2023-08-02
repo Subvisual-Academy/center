@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :answers
   resources :weekly_friends, only: [:show], controller: "weekly_friends"
+  resources :users_answers, only: [:index], controller: "users_answers"
   post "/auth/login", to: "authentication#login", as: :login
   get "/weekly_question", to: "weekly_questions#show", as: :weekly_question
   resources :weekly_questions, only: [:index]
