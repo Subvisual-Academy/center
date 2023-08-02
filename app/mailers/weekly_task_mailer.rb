@@ -1,8 +1,8 @@
 class WeeklyTaskMailer < ApplicationMailer
-    default to: -> { User.all.pluck(:email) },
-          from: 'no.reply@subvisual.academy'
-
+    default :from => 'contact@subvisual.com'
+    
     def weekly_reminder
-        mail(subject: 'The Space Center: new weekly tasks!')
+        emails = User.all.pluck(:email)
+        mail(to: emails, subject: 'The Space Center: new weekly tasks!')
     end
 end
