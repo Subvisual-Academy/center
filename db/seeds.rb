@@ -56,3 +56,80 @@ questions.each do |question|
 
   Question.create(question)
 end
+
+companies = [
+  {name: "Subvisual"},
+  {name: "Finiam"},
+  {name: "Invisible lab"},
+  {name: "Onda"},
+  {name: "Pink Room"},
+  {name: "Universe"}
+]
+
+companies.each do |company|
+  Company.find_or_create_by(name: company[:name])
+end
+
+skills = [
+  {name: "Frontend dev"},
+  {name: "Backend dev"},
+  {name: "Blockchain"},
+  {name: "Git / Github"},
+  {name: "Databases"},
+  {name: "Figma"},
+  {name: "Adobe Creative Cloud"},
+  {name: "Creative Coding"},
+  {name: "Graphic Design"},
+  {name: "Blender"},
+  {name: "User Research"},
+  {name: "Interface Design"},
+  {name: "Experience Design"},
+  {name: "Usability Testing"},
+  {name: "Branding"},
+  {name: "Analytics tools"},
+  {name: "Marketing"},
+  {name: "Communication"},
+  {name: "Product exploration"},
+  {name: "Strategic planning"},
+  {name: "Sales"},
+  {name: "HR"},
+  {name: "Operations"}
+]
+
+skills.each do |skill|
+  Skill.find_or_create_by(name: skill[:name])
+end
+
+hobbies = [
+  {name: "Sports"},
+  {name: "Hiking"},
+  {name: "Padel / Paddle / Tennis"},
+  {name: "Football"},
+  {name: "Movies"},
+  {name: "TV series"},
+  {name: "Anime"},
+  {name: "Making music"},
+  {name: "Music genres"},
+  {name: "Children"},
+  {name: "Board games"},
+  {name: "Cooking"},
+  {name: "Traveling"},
+  {name: "Art"},
+  {name: "Languages"},
+  {name: "Peers"},
+  {name: "Photography"},
+  {name: "Video gaming"},
+  {name: "Gardening"},
+  {name: "Handcraft"},
+  {name: "Collecting"},
+  {name: "Formula 1"},
+  {name: "Reading"},
+  {name: "Psychology"},
+  {name: "Wellness / Meditation"},
+  {name: "Tech / computers"},
+  {name: "Outdoor activities"}
+]
+
+hobbies.each do |hobby|
+  Hobby.find_or_create_by(name: hobby[:name])
+end
