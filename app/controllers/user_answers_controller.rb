@@ -1,4 +1,4 @@
-class UsersAnswersController < ApplicationController
+class UserAnswersController < ApplicationController
   def index
     if user_answers.nil?
       render json: [], status: :ok
