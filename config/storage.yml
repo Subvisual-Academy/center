@@ -12,10 +12,8 @@ amazon:
   access_key_id: <%= ENV['AWS_ACESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACESS_KEY'] %>
   region: eu-west-2
-  public-read: true
+  #public-read: true
   bucket: <%= ENV['S3_BUCKET'] %>
-  upload:
-    acl: "public-read"
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS
