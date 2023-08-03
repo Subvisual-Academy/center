@@ -11,7 +11,7 @@ class CreateWeeklyActivitiesJob < ApplicationJob
       user_ids = User.order("RANDOM()").pluck(:id)
     end
     pair(user_ids)
-    WeeklyTaskMailer.weekly_reminder.deliver_now
+    WeeklyTaskMailer.weekly_reminder.deliver_later
   end
 
   private
