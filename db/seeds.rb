@@ -59,7 +59,6 @@ end
 
 companies = [
   {name: "Subvisual"},
-  {name: "Finiam"},
   {name: "Invisible lab"},
   {name: "Onda"},
   {name: "Pink Room"},
