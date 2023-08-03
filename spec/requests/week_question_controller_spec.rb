@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe "Weekly Question" do
   context "GET show" do
     it "provides the weekly question for the given user" do
-      user = create(:user)
+      company = create(:company)
+      user = create(:user, company: company)
       question = create(:question)
       weekly_question = WeeklyQuestion.create(question: question, week: Date.today.end_of_week + 1.day)
       header = sign_in_as(user)
