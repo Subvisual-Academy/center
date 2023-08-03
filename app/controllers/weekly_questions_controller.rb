@@ -3,7 +3,12 @@ class WeeklyQuestionsController < ApplicationController
 
   # GET all the weekly questions with question body info
   def index
-    render json: WeeklyQuestion.all.to_json(include: {question: {only: :body}})
+    serialized = Alba.serialize(WeeklyQuestion.all) do
+      attributes :id, :week, :created_at, :updated_at
+
+      one :question
+    end
+    render json: serialized
   end
 
   # GET this weeks question

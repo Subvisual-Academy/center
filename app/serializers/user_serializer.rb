@@ -2,5 +2,5 @@
 class UserSerializer
   include Alba::Resource
 
-  attributes :id, :name, :email, :password, :bio, :role, :profile_pic, :created_at, :updated_at
+  attributes :id, :name, :email, :profile_pic
 end
