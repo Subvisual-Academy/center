@@ -15,9 +15,9 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params).to_json(include: [:profile_pic])
+    @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :created
+      render json: UserSerializer.new(@user).serialize, status: :created
     else
       render json: {errors: @user.errors.full_messages},
         status: :unprocessable_entity
@@ -26,11 +26,11 @@ class UsersController < ApplicationController
 
   # PUT /users/{user_id}
   def update
-    unless @user.update(user_params).to_json(include: [:profile_pic])
+    unless @user.update(user_params)
       render json: {errors: @user.errors.full_messages},
         status: :unprocessable_entity
     end
-    render json: @user
+    render json: UserSerializer.new(@user).serialize
   end
 
   # DELETE /users/{user_id}
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(
-      :name, :email, :password, :password_confirmation, :bio, :base_office, :role, :profile_pic
+      :name, :email, :password, :password_confirmation, :bio, :base_office, :role, :profile_pic, :company_id
     )
   end
 end
