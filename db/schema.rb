@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_140107) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_02_170650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,8 +53,44 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_140107) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hobbies", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hobby_users", force: :cascade do |t|
+    t.bigint "hobby_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hobby_id"], name: "index_hobby_users_on_hobby_id"
+    t.index ["user_id"], name: "index_hobby_users_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skill_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "skill_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_skill_users_on_skill_id"
+    t.index ["user_id"], name: "index_skill_users_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,13 +99,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_140107) do
     t.string "name"
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.integer "role"
+    t.string "role"
     t.integer "base_office"
     t.string "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "not_paired", default: false
-    t.string "profile_pic"
+    t.string "discord"
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -95,6 +133,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_140107) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "hobby_users", "hobbies"
+  add_foreign_key "hobby_users", "users"
+  add_foreign_key "skill_users", "skills"
+  add_foreign_key "skill_users", "users"
+  add_foreign_key "users", "companies"
   add_foreign_key "weekly_activities", "users", column: "user_1_id"
   add_foreign_key "weekly_activities", "users", column: "user_2_id"
   add_foreign_key "weekly_questions", "questions"

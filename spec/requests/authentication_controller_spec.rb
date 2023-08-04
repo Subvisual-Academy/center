@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe "Authentication" do
   context "GET login" do
     it "verifies if the user exists and is validated" do
-      user = create(:user)
+      company = create(:company)
+      user = create(:user, company_id: company.id)
 
       post login_path, params: {email: user.email, password: user.password}
 
@@ -11,7 +12,8 @@ RSpec.describe "Authentication" do
     end
 
     it "ensures the JSON body response contains the expected attributes" do
-      user = create(:user)
+      company = create(:company)
+      user = create(:user, company_id: company.id)
 
       post login_path, params: {email: user.email, password: user.password}
 

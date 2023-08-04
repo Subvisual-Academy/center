@@ -8,6 +8,11 @@ class User < ApplicationRecord
     if: -> { new_record? || !password.nil? }
   has_many :answers
   has_many :weekly_activities
+  has_many :skill_users
+  has_many :skills, through: :skill_users
+  has_many :hobby_users
+  has_many :hobbies, through: :hobby_users
+  has_one :company
   enum :base_office, {braga: 0, coimbra: 1}
   after_commit :add_default_picture, on: [:create]
 
