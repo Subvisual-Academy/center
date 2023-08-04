@@ -3,7 +3,8 @@ class WeeklyQuestionsController < ApplicationController
 
   # GET all the weekly questions with question body info
   def index
-    render json: WeeklyQuestion.all.to_json(include: {question: {only: :body}})
+    serialized = WeeklyQuestionSerializer.new(WeeklyQuestion.all).serialize
+    render json: serialized
   end
 
   # GET this weeks question
