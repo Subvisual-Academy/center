@@ -2,7 +2,7 @@ class CreateWeeklyActivitiesJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    WeeklyActivity.all.where(active: true).update_all(active: false)
+    WeeklyActivity.where(active: true).update_all(active: false)
     unused_user = User.find_by(not_paired: true)
 
     if unused_user
