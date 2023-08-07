@@ -1,9 +1,9 @@
 create_weekly_question:
-  cron: "0 9 * * 1"
+  cron: "0 8 * * 1"
   class: "CreateWeeklyQuestionJob"
   queue: default
 
 create_weekly_activity:
-  cron: "0 9 * * 1"
+  cron: "0 8 * * 1"
   class: "CreateWeeklyActivitiesJob"
   queue: default
