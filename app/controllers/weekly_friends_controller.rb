@@ -1,7 +1,8 @@
 class WeeklyFriendsController < ApplicationController
   def show
     user = User.find_by_id(params["id"])
-    weekly_activity = WeeklyActivity.where(user_1_id: user).or(WeeklyActivity.where(user_2_id: user)).first
+    active_activities = WeeklyActivity.where(active: true)
+    weekly_activity = active_activities.where(user_1_id: user).or(WeeklyActivity.where(user_2_id: user)).first
 
     if weekly_activity.nil?
       render json: user
