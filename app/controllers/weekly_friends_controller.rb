@@ -5,10 +5,10 @@ class WeeklyFriendsController < ApplicationController
 
     if weekly_activity.nil?
       render json: user
-    elsif user == weekly_activity.user_1
-      render json: weekly_activity.user_2
+    elsif user.id == weekly_activity.pluck(:user_1_id)
+      render json: User.where(id: weekly_activity.pluck(:user_2_id))
     else
-      render json: weekly_activity.user_1
+      render json: User.where(id: weekly_activity.pluck(:user_1_id))
     end
   end
 end
