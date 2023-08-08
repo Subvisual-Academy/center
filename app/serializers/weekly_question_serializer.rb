@@ -3,7 +3,7 @@ class WeeklyQuestionSerializer
 
   attributes :id, :week
 
-  attribute :during do |resource|
+  attribute :formatted_week do |resource|
     start_week = resource.week
     end_week = resource.week + 6
     "#{start_week.strftime("%d/%m")}-#{end_week.strftime("%d/%m")} "
