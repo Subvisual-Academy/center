@@ -3,7 +3,7 @@ class WeeklyQuestionsController < ApplicationController
 
   # GET all the weekly questions with question body info
   def index
-    serialized = WeeklyQuestionSerializer.new(WeeklyQuestion.all.offset(1)).serialize
+    serialized = WeeklyQuestionSerializer.new(WeeklyQuestion.where("week <= ?", Time.now)).serialize
     render json: serialized
   end
 
