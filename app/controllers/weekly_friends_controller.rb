@@ -1,14 +1,16 @@
 class WeeklyFriendsController < ApplicationController
   def show
     user = User.find(params["id"])
-    weekly_activity = WeeklyActivity.active.includes_user(user.id)
+    active = WeeklyActivity.active
 
-    if weekly_activity.nil?
-      render json: user
-    elsif user.id == weekly_activity.pluck(:user_1_id)
-      render json: User.where(id: weekly_activity.pluck(:user_2_id))
+    if active.where(user_1_id: user.id).exists?
+      render json: active.find_by(user_1_id: user.id).user_2
+
+    elsif active.where(user_2_id: user.id).exists?
+      render json: active.find_by(user_2_id: user.id).user_1
+
     else
-      render json: User.where(id: weekly_activity.pluck(:user_1_id))
+      render json: user
     end
   end
 end
