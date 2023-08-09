@@ -6,7 +6,7 @@ RSpec.describe "Weekly Question" do
       company = create(:company)
       user = create(:user, company_id: company.id)
       question = create(:question)
-      weekly_question = WeeklyQuestion.create(question: question, week: Date.today.end_of_week + 1.day)
+      weekly_question = WeeklyQuestion.create(question: question, week: Date.today.beginning_of_week)
       header = sign_in_as(user)
 
       get weekly_question_path, headers: header
