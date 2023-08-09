@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
+    @user.profile_pic.attach(io: StringIO.new(user_params[:profile_pic].to_blob),
+      filename: "#{user.id}_#{user.email}.png",
+      content_type: "image/jpeg")
     if @user.save
       render json: UserSerializer.new(@user).serialize, status: :created
     else
