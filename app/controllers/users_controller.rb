@@ -16,9 +16,12 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.profile_pic.attach(io: StringIO.new(user_params[:profile_pic].to_blob),
-      filename: "#{user.id}_#{user.email}.png",
-      content_type: "image/jpeg")
+    if user_params[:profile_pic]
+      @user.profile_pic.attach(io: StringIO.new(user_params[:profile_pic].read),
+        filename: user_params[:profile_pic].original_filename,
+        content_type: user_params[:profile_pic].content_type)
+    end
+
     if @user.save
       render json: UserSerializer.new(@user).serialize, status: :created
     else
@@ -50,8 +53,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(
-      :name, :email, :password, :password_confirmation, :bio, :base_office, :role, :profile_pic, :company_id
+    params.require(:user).permit(
+      :name, :email, :password, :password_confirmation, :bio, :base_office, :role, :company_id, :profile_pic
     )
   end
 end
