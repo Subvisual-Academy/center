@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get "/weekly_question", to: "weekly_questions#show", as: :weekly_question
   resources :weekly_questions, only: [:index]
   get "/*path", to: "application#not_found"
+  resources :companies
 end
