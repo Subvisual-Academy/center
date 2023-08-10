@@ -12,10 +12,10 @@ Rails.application.routes.draw do
     resources :answers, only: [:index], controller: "questions/answers"
   end
   resources :answers
+  resources :companies
   resources :weekly_friends, only: [:show], controller: "weekly_friends"
   post "/auth/login", to: "authentication#login", as: :login
   get "/weekly_question", to: "weekly_questions#show", as: :weekly_question
   resources :weekly_questions, only: [:index]
   get "/*path", to: "application#not_found"
-  resources :companies
 end
