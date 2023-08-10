@@ -1,14 +1,16 @@
 class WeeklyFriendsController < ApplicationController
   def show
-    user = User.find_by_id(params["id"])
-    weekly_activity = WeeklyActivity.where(user_1_id: user).or(WeeklyActivity.where(user_2_id: user)).first
+    user = User.find(params["id"])
+    active_activities = WeeklyActivity.active
 
-    if weekly_activity.nil?
-      render json: user
-    elsif user == weekly_activity.user_1
-      render json: weekly_activity.user_2
+    if active_activities.where(user_1: user).exists?
+      render json: active_activities.find_by(user_1: user).user_2
+
+    elsif active_activities.where(user_2: user).exists?
+      render json: active_activities.find_by(user_2: user).user_1
+
     else
-      render json: weekly_activity.user_1
+      render json: {error: "not_found"}, status: 404
     end
   end
 end
