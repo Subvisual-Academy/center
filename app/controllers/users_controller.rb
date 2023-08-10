@@ -16,11 +16,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    if user_params[:profile_pic]
-      @user.profile_pic.attach(io: StringIO.new(user_params[:profile_pic].read),
-        filename: user_params[:profile_pic].original_filename,
-        content_type: user_params[:profile_pic].content_type)
-    end
+    upload_picture(@user)
 
     if @user.save
       render json: UserSerializer.new(@user).serialize, status: :created

@@ -15,4 +15,13 @@ class ApplicationController < ActionController::API
       render json: {errors: e.message}, status: :unauthorized
     end
   end
+
+  def upload_picture(user)
+    user_params = request.path_parameters
+    if user_params[:profile_pic]
+      user.profile_pic.attach(io: StringIO.new(user_params[:profile_pic].read),
+        filename: user_params[:profile_pic].original_filename,
+        content_type: user_params[:profile_pic].content_type)
+    end
+  end
 end
