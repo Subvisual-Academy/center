@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root "rails/welcome#index"
   resources :users do
     resources :answers, only: [:index], controller: "users/answers"
+    resources :hobbies, only: [:index], controller: "users/hobbies"
+    resources :skills, only: [:index], controller: "users/skills"
   end
   resources :questions do
     resources :answers, only: [:index], controller: "questions/answers"
