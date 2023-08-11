@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   private
 
   def upload_picture(user, profile_pic)
-    if profile_pic
+    return unless profile_pic
       user.profile_pic.attach(io: StringIO.new(profile_pic.read),
         filename: profile_pic.original_filename,
         content_type: profile_pic.content_type)
