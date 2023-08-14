@@ -2,7 +2,7 @@
 class UserSerializer
   include Alba::Resource
 
-  attributes :id, :name, :email
+  attributes :id, :name, :email, :role, :base_office, :discord
 
   attribute :profile_pic do |resource|
     resource.profile_pic.url
