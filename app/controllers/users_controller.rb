@@ -4,8 +4,9 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
-    render json: Alba.serialize(@users), status: :ok
+    users = User.all
+    serialized_users = users.map { |user| JSON.parse(Alba.serialize(user)) }
+    render json: serialized_users, status: :ok
   end
 
   # GET /users/{user_id}
