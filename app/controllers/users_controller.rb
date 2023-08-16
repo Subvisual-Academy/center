@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
+    upload_picture(@user, user_params[:profile_pic])
+
     if @user.save
       render json: UserSerializer.new(@user).serialize, status: :created
     else
@@ -39,6 +41,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def upload_picture(user, profile_pic)
+    return unless profile_pic
+    user.profile_pic.attach(io: StringIO.new(profile_pic.read),
+      filename: profile_pic.original_filename,
+      content_type: profile_pic.content_type)
+  end
 
   def find_user
     @user = User.find(params[:id])
