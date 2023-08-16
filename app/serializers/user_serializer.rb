@@ -4,6 +4,9 @@ class UserSerializer
 
   attributes :id, :name, :email, :role, :base_office, :discord
 
+  attribute :profile_pic do |resource|
+    resource.profile_pic.url
+    
   attribute :company_name do |resource|
     company = Company.find_by(id: resource.company_id)
     company&.name
