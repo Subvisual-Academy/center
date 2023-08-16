@@ -7,5 +7,4 @@ class UserSerializer
   attribute :profile_pic do |resource|
     resource.profile_pic.url
   end
-
 end
