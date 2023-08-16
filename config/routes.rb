@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   root "rails/welcome#index"
   resources :users do
     resources :answers, only: [:index], controller: "users/answers"
-    resources :hobbies, only: [:index], controller: "users/hobbies"
-    resources :skills, only: [:index], controller: "users/skills"
+    resources :hobbies, only: [:index, :create], controller: "users/hobbies"
+    resources :skills, only: [:index, :create], controller: "users/skills"
   end
   resources :questions do
     resources :answers, only: [:index], controller: "questions/answers"
   end
+  resources :skills, only: [:index], controller: "skills"
+  resources :hobbies, only: [:index], controller: "hobbies"
   resources :answers
   resources :companies
   resources :weekly_friends, only: [:show], controller: "weekly_friends"

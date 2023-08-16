@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_07_111609) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_171617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_111609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hobby_id"], name: "index_hobby_users_on_hobby_id"
+    t.index ["user_id", "hobby_id"], name: "index_hobby_users_on_user_id_and_hobby_id", unique: true
     t.index ["user_id"], name: "index_hobby_users_on_user_id"
   end
 
@@ -86,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_111609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["skill_id"], name: "index_skill_users_on_skill_id"
+    t.index ["user_id", "skill_id"], name: "index_skill_users_on_user_id_and_skill_id", unique: true
     t.index ["user_id"], name: "index_skill_users_on_user_id"
   end
 
@@ -100,7 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_111609) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "role"
-    t.integer "base_office"
+    t.string "location"
     t.string "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
