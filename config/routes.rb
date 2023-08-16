@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   root "rails/welcome#index"
   resources :users do
     resources :answers, only: [:index], controller: "users/answers"
+    resources :hobbies, only: [:index], controller: "users/hobbies"
+    resources :skills, only: [:index], controller: "users/skills"
   end
   resources :questions do
     resources :answers, only: [:index], controller: "questions/answers"
   end
   resources :answers
+  resources :companies
   resources :weekly_friends, only: [:show], controller: "weekly_friends"
   post "/auth/login", to: "authentication#login", as: :login
   get "/weekly_question", to: "weekly_questions#show", as: :weekly_question
