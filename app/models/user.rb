@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :hobby_users
   has_many :hobbies, through: :hobby_users
   has_one :company
-  enum :base_office, {braga: 0, coimbra: 1}
   after_commit :add_default_picture, on: [:create]
 
   private
