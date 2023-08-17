@@ -5,13 +5,12 @@ class UsersController < ApplicationController
   # GET /users
   def index
     users = User.all
-    serialized_users = users.map { |user| JSON.parse(Alba.serialize(user)) }
-    render json: serialized_users, status: :ok
+    render json: serialize_user(users), status: :ok
   end
 
   # GET /users/{user_id}
   def show
-    render json: Alba.serialize(@user), status: :ok
+    render json: serialize_user(@user), status: :ok
   end
 
   # POST /users
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
     upload_picture(@user, user_params[:profile_pic])
 
     if @user.save
-      render json: UserSerializer.new(@user).serialize, status: :created
+      render json: serialize_user(@user), status: :created
     else
       render json: {errors: @user.errors.full_messages},
         status: :unprocessable_entity
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
       render json: {errors: @user.errors.full_messages},
         status: :unprocessable_entity
     end
-    render json: UserSerializer.new(@user).serialize
+    render json: serialize_user(@user)
   end
 
   # DELETE /users/{user_id}
