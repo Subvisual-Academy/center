@@ -7,8 +7,19 @@ class AuthenticationController < ApplicationController
     if @user&.authenticate(params[:password])
       token = JsonWebToken.encode(user_id: @user.id)
       time = Time.now + 24.hours.to_i
-      render json: {token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
-                    user: @user.id}, status: :ok
+      profile_pic_url = if Rails.env.development? || Rails.env.production?
+        @user.profile_pic.url
+      else
+        @user.profile_pic.attachment.key
+      end
+
+      render json: {
+        token: token,
+        exp: time.strftime("%m-%d-%Y %H:%M"),
+        user: @user.id,
+        profile_pic: profile_pic_url
+      }, status: :ok
+
     else
       render json: {error: "unauthorized"}, status: :unauthorized
     end

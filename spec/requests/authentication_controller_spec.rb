@@ -18,7 +18,7 @@ RSpec.describe "Authentication" do
       post login_path, params: {email: user.email, password: user.password}
 
       json_response = JSON.parse(response.body)
-      expect(json_response.keys).to match_array(["token", "exp", "user"])
+      expect(json_response.keys).to match_array(["token", "exp", "user", "profile_pic"])
     end
   end
 end
